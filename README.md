@@ -132,3 +132,14 @@ Projeto adaptado e publicado por Mike Vieira.
 A ideia inicial surgiu em uma conversa com William Bruno, que compartilhou uma referência de monitoramento utilizada no ambiente dele.
 
 🔗 LinkedIn — Mike Vieira
+
+
+---
+
+## Projetos adicionais
+
+### MikroTik Zabbix Dashboard Overlay
+
+Template público e sanitizado para Zabbix 6.4, com cockpit operacional, ICMP, CPU, memória, descoberta de interfaces, tráfego RX/TX, estado, erros e descartes.
+
+➡️ [Abrir projeto](./projects/mikrotik-zabbix-dashboard-overlay/)
