@@ -1,0 +1,1148 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+  - uuid: 36bff6c29af64692839d077febfc7079
+    name: Templates/Network devices
+  templates:
+  - uuid: 7a225d01ca47490a86aeaa48eafdd00d
+    template: MikroTik Dashboard Overlay
+    name: MikroTik | Dashboard Overlay
+    description: 'Template overlay público para MikroTik RouterOS via SNMPv2/SNMPv3. Projetado para ser vinculado adicionalmente a hosts que já possuam outro template, usando chaves próprias (mk.overlay.*). Não cria triggers; foco em dashboard e troubleshooting N1/N2. Requer interface SNMP no host. Compatível com RouterOS que exponha HOST-RESOURCES-MIB e IF-MIB. Dashboard v8: cockpit (KPIs semânticos, conectividade, recursos), Interfaces (RX/TX combinados + estado) e Qualidade (erros/descartes por interface).'
+    groups:
+    - name: Templates/Network devices
+    items:
+    - uuid: 7af38d79631c4ac99d61e9a5eeb799a6
+      name: 'MikroTik: CPU load'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.25.3.3.1.2.1
+      key: mk.overlay.cpu.util
+      history: 7d
+      trends: 30d
+      units: '%'
+    - uuid: b0671aa8f8b74a46ba029a36b6b878b2
+      name: 'MikroTik: Memory total'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.25.2.3.1.5.65536
+      key: mk.overlay.memory.total
+      history: 7d
+      trends: 30d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'
+    - uuid: 377245e3d4bb457a94a9c7e21979ce79
+      name: 'MikroTik: Memory used'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.25.2.3.1.6.65536
+      key: mk.overlay.memory.used
+      history: 7d
+      trends: 30d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'
+    - uuid: d6f8f78e415d47dfbe3802324ecccd96
+      name: 'MikroTik: Memory utilization'
+      type: CALCULATED
+      key: mk.overlay.memory.pct
+      history: 7d
+      trends: 30d
+      value_type: FLOAT
+      units: '%'
+      params: last(//mk.overlay.memory.used)/last(//mk.overlay.memory.total)*100
+      description: Percentual de memória em uso (used/total). Calculado a partir dos itens SNMP existentes.
+    - uuid: 4a9be9d0b6a1422799c6230bb9765606
+      name: 'MikroTik: System description'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.1.1.0
+      key: mk.overlay.system.descr
+      delay: 1h
+      history: 7d
+      trends: '0'
+      value_type: TEXT
+    - uuid: ec0e8116380d4843ae9dd5d9c0ec1b89
+      name: 'MikroTik: System name'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.1.5.0
+      key: mk.overlay.system.name
+      delay: 1h
+      history: 7d
+      trends: '0'
+      value_type: CHAR
+    - uuid: ff2b9b4541bc4e058242b9d1b2d261b3
+      name: 'MikroTik: Uptime'
+      type: SNMP_AGENT
+      snmp_oid: 1.3.6.1.2.1.1.3.0
+      key: mk.overlay.system.uptime
+      history: 7d
+      trends: 30d
+      units: uptime
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '0.01'
+    - uuid: 96057e740f534759820db77c4c620194
+      name: 'MikroTik: ICMP packet loss'
+      type: SIMPLE
+      key: icmppingloss[{HOST.CONN},5,20,56,1000]
+      history: 7d
+      trends: 30d
+      value_type: FLOAT
+      units: '%'
+    - uuid: 6be5fa332e664972b232d8ae6ce1cc1e
+      name: 'MikroTik: ICMP latency'
+      type: SIMPLE
+      key: icmppingsec[{HOST.CONN},5,20,56,1000,avg]
+      history: 7d
+      trends: 30d
+      value_type: FLOAT
+      units: s
+    - uuid: 2b793d249d66460baf797e4320b3c351
+      name: 'MikroTik: CPE ICMP status'
+      type: SIMPLE
+      key: icmpping[{HOST.CONN},5,20,56,1000]
+      history: 7d
+      trends: 30d
+      valuemap:
+        name: MikroTik Overlay Availability
+    discovery_rules:
+    - uuid: 7c44c0017bb3406d962d964fd40d21fe
+      name: 'MikroTik: Interface discovery'
+      type: SNMP_AGENT
+      snmp_oid: discovery[{#IFNAME},1.3.6.1.2.1.31.1.1.1.1,{#IFDESCR},1.3.6.1.2.1.2.2.1.2,{#IFALIAS},1.3.6.1.2.1.31.1.1.1.18]
+      key: mk.overlay.net.if.discovery
+      delay: 1h
+      lifetime: 7d
+      item_prototypes:
+      - uuid: 361e85582ae842258d0fe19fce50b1a5
+        name: 'MikroTik Interface {#IFNAME}: Discards RX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.2.2.1.13.{#SNMPINDEX}
+        key: mk.overlay.net.if.in.discards[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+      - uuid: afb00a5b40b541928f1a621ef02c86cf
+        name: 'MikroTik Interface {#IFNAME}: Errors RX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.2.2.1.14.{#SNMPINDEX}
+        key: mk.overlay.net.if.in.errors[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+      - uuid: 4285623353dd40c287de310b22c6bbcb
+        name: 'MikroTik Interface {#IFNAME}: RX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.31.1.1.1.6.{#SNMPINDEX}
+        key: mk.overlay.net.if.in[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        units: bps
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+        - type: MULTIPLIER
+          parameters:
+          - '8'
+      - uuid: 25ba60016d8c43dd8095f990debde14a
+        name: 'MikroTik Interface {#IFNAME}: Discards TX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.2.2.1.19.{#SNMPINDEX}
+        key: mk.overlay.net.if.out.discards[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+      - uuid: eab079ae097e4350a471abb271abc998
+        name: 'MikroTik Interface {#IFNAME}: Errors TX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.2.2.1.20.{#SNMPINDEX}
+        key: mk.overlay.net.if.out.errors[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+      - uuid: 6c7970f90390420d88090e143cebf9b0
+        name: 'MikroTik Interface {#IFNAME}: TX'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.31.1.1.1.10.{#SNMPINDEX}
+        key: mk.overlay.net.if.out[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+        units: bps
+        preprocessing:
+        - type: CHANGE_PER_SECOND
+          parameters:
+          - ''
+        - type: MULTIPLIER
+          parameters:
+          - '8'
+      - uuid: 9aa1352d10e94c6b88825224a3a7a9ef
+        name: 'MikroTik Interface {#IFNAME}: Operational status'
+        type: SNMP_AGENT
+        snmp_oid: 1.3.6.1.2.1.2.2.1.8.{#SNMPINDEX}
+        key: mk.overlay.net.if.status[{#SNMPINDEX}]
+        history: 7d
+        trends: 30d
+      graph_prototypes:
+      - uuid: a505d705b647421e9ebc9191f4908844
+        name: 'MikroTik Interface {#IFNAME}: Traffic'
+        show_work_period: 'NO'
+        show_triggers: 'NO'
+        ymin_type_1: FIXED
+        graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 42A5F5
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.in[{#SNMPINDEX}]
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: 80CBC4
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.out[{#SNMPINDEX}]
+        show_legend: 'YES'
+      - uuid: 912fddcfac7246a39835dffec1dfcf1d
+        name: 'MikroTik Interface {#IFNAME}: Status'
+        show_work_period: 'NO'
+        show_triggers: 'NO'
+        ymin_type_1: FIXED
+        ymax_type_1: FIXED
+        yaxismax: '3'
+        graph_items:
+        - drawtype: BOLD_LINE
+          color: 90A4AE
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.status[{#SNMPINDEX}]
+        show_legend: 'YES'
+      - uuid: 6563b31763ee409a80cacd4c3571c531
+        name: 'MikroTik Interface {#IFNAME}: Errors'
+        show_work_period: 'NO'
+        show_triggers: 'NO'
+        ymin_type_1: FIXED
+        graph_items:
+        - drawtype: GRADIENT_LINE
+          color: EF5350
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.in.errors[{#SNMPINDEX}]
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: FF9E80
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.out.errors[{#SNMPINDEX}]
+        show_legend: 'YES'
+      - uuid: 32da48bc3a7f42eb9a6977fe5bcc0a9f
+        name: 'MikroTik Interface {#IFNAME}: Discards'
+        show_work_period: 'NO'
+        show_triggers: 'NO'
+        ymin_type_1: FIXED
+        graph_items:
+        - drawtype: GRADIENT_LINE
+          color: FFCA28
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.in.discards[{#SNMPINDEX}]
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: FFF176
+          item:
+            host: MikroTik Dashboard Overlay
+            key: mk.overlay.net.if.out.discards[{#SNMPINDEX}]
+        show_legend: 'YES'
+    dashboards:
+    - uuid: 79b7b47964f34e4cbd99cf4ae76f477b
+      name: MikroTik | Cockpit
+      pages:
+      - name: Cockpit
+        widgets:
+        - type: item
+          name: Status do CPE
+          width: '6'
+          height: '4'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '13'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '34'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '0'
+          - type: STRING
+            name: thresholds.color.0
+            value: 2E7D32
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '1'
+          - type: STRING
+            name: bg_color
+            value: C62828
+          - type: STRING
+            name: value_color
+            value: FFFFFF
+          - type: STRING
+            name: desc_color
+            value: FFFFFF
+          - type: STRING
+            name: description
+            value: Status do CPE
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: icmpping[{HOST.CONN},5,20,56,1000]
+          hide_header: 'YES'
+        - type: item
+          name: Latência
+          x: '6'
+          width: '5'
+          height: '4'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '12'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '32'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '1'
+          - type: INTEGER
+            name: units_size
+            value: '16'
+          - type: INTEGER
+            name: units_bold
+            value: '1'
+          - type: STRING
+            name: units_color
+            value: CFD8DC
+          - type: STRING
+            name: thresholds.color.0
+            value: EF6C00
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '0.08'
+          - type: STRING
+            name: thresholds.color.1
+            value: C62828
+          - type: STRING
+            name: thresholds.threshold.1
+            value: '0.12'
+          - type: STRING
+            name: bg_color
+            value: 1B4332
+          - type: STRING
+            name: value_color
+            value: FFFFFF
+          - type: STRING
+            name: desc_color
+            value: CFD8DC
+          - type: STRING
+            name: description
+            value: Latência ICMP
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: icmppingsec[{HOST.CONN},5,20,56,1000,avg]
+          hide_header: 'YES'
+        - type: item
+          name: Perda
+          x: '11'
+          width: '5'
+          height: '4'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '12'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '32'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '1'
+          - type: INTEGER
+            name: units_size
+            value: '16'
+          - type: INTEGER
+            name: units_bold
+            value: '1'
+          - type: STRING
+            name: units_color
+            value: CFD8DC
+          - type: STRING
+            name: thresholds.color.0
+            value: EF6C00
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '1'
+          - type: STRING
+            name: thresholds.color.1
+            value: C62828
+          - type: STRING
+            name: thresholds.threshold.1
+            value: '40'
+          - type: STRING
+            name: bg_color
+            value: 1B4332
+          - type: STRING
+            name: value_color
+            value: FFFFFF
+          - type: STRING
+            name: desc_color
+            value: CFD8DC
+          - type: STRING
+            name: description
+            value: Perda de pacotes
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: icmppingloss[{HOST.CONN},5,20,56,1000]
+          hide_header: 'YES'
+        - type: item
+          name: CPU
+          x: '16'
+          width: '4'
+          height: '4'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '12'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '28'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '1'
+          - type: INTEGER
+            name: units_size
+            value: '14'
+          - type: INTEGER
+            name: units_bold
+            value: '1'
+          - type: STRING
+            name: units_color
+            value: CFD8DC
+          - type: STRING
+            name: thresholds.color.0
+            value: EF6C00
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '70'
+          - type: STRING
+            name: thresholds.color.1
+            value: C62828
+          - type: STRING
+            name: thresholds.threshold.1
+            value: '85'
+          - type: STRING
+            name: bg_color
+            value: 1F2F3D
+          - type: STRING
+            name: value_color
+            value: FFFFFF
+          - type: STRING
+            name: desc_color
+            value: CFD8DC
+          - type: STRING
+            name: description
+            value: CPU
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: mk.overlay.cpu.util
+          hide_header: 'YES'
+        - type: item
+          name: Memória
+          x: '20'
+          width: '4'
+          height: '4'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '12'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '28'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '1'
+          - type: INTEGER
+            name: units_size
+            value: '14'
+          - type: INTEGER
+            name: units_bold
+            value: '1'
+          - type: STRING
+            name: units_color
+            value: CFD8DC
+          - type: STRING
+            name: thresholds.color.0
+            value: EF6C00
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '80'
+          - type: STRING
+            name: thresholds.color.1
+            value: C62828
+          - type: STRING
+            name: thresholds.threshold.1
+            value: '90'
+          - type: STRING
+            name: bg_color
+            value: 1F2F3D
+          - type: STRING
+            name: value_color
+            value: FFFFFF
+          - type: STRING
+            name: desc_color
+            value: CFD8DC
+          - type: STRING
+            name: description
+            value: Memória em uso
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: mk.overlay.memory.pct
+          hide_header: 'YES'
+        - type: item
+          name: Equipamento
+          y: '4'
+          width: '7'
+          height: '2'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '16'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '32'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '0'
+          - type: STRING
+            name: bg_color
+            value: 1B2429
+          - type: STRING
+            name: value_color
+            value: ECEFF1
+          - type: STRING
+            name: desc_color
+            value: 78909C
+          - type: STRING
+            name: description
+            value: Equipamento
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: mk.overlay.system.name
+          hide_header: 'YES'
+        - type: item
+          name: Sistema
+          x: '7'
+          y: '4'
+          width: '11'
+          height: '2'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '16'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '32'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '0'
+          - type: STRING
+            name: bg_color
+            value: 1B2429
+          - type: STRING
+            name: value_color
+            value: ECEFF1
+          - type: STRING
+            name: desc_color
+            value: 78909C
+          - type: STRING
+            name: description
+            value: Sistema / modelo
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: mk.overlay.system.descr
+          hide_header: 'YES'
+        - type: item
+          name: Uptime
+          x: '18'
+          y: '4'
+          width: '6'
+          height: '2'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: INTEGER
+            name: show
+            value: '1'
+          - type: INTEGER
+            name: show
+            value: '2'
+          - type: INTEGER
+            name: adv_conf
+            value: '1'
+          - type: INTEGER
+            name: desc_size
+            value: '16'
+          - type: INTEGER
+            name: desc_bold
+            value: '1'
+          - type: INTEGER
+            name: desc_h_pos
+            value: '1'
+          - type: INTEGER
+            name: desc_v_pos
+            value: '0'
+          - type: INTEGER
+            name: value_size
+            value: '32'
+          - type: INTEGER
+            name: value_bold
+            value: '1'
+          - type: INTEGER
+            name: value_h_pos
+            value: '1'
+          - type: INTEGER
+            name: value_v_pos
+            value: '1'
+          - type: INTEGER
+            name: units_show
+            value: '1'
+          - type: INTEGER
+            name: units_size
+            value: '16'
+          - type: INTEGER
+            name: units_bold
+            value: '1'
+          - type: STRING
+            name: units_color
+            value: CFD8DC
+          - type: STRING
+            name: thresholds.color.0
+            value: EF6C00
+          - type: STRING
+            name: thresholds.threshold.0
+            value: '0'
+          - type: STRING
+            name: thresholds.color.1
+            value: 8D6E00
+          - type: STRING
+            name: thresholds.threshold.1
+            value: '3600'
+          - type: STRING
+            name: thresholds.color.2
+            value: 1B2429
+          - type: STRING
+            name: thresholds.threshold.2
+            value: '86400'
+          - type: STRING
+            name: bg_color
+            value: 1B2429
+          - type: STRING
+            name: value_color
+            value: ECEFF1
+          - type: STRING
+            name: desc_color
+            value: 78909C
+          - type: STRING
+            name: description
+            value: Uptime
+          - type: ITEM
+            name: itemid
+            value:
+              host: MikroTik Dashboard Overlay
+              key: mk.overlay.system.uptime
+          hide_header: 'YES'
+        - type: graph
+          name: 'Conectividade: latência (linha) e perda (área, eixo direito)'
+          y: '6'
+          width: '24'
+          height: '6'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: GRAPH
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Overlay: Connectivity'
+        - type: graph
+          name: 'Recursos: CPU e memória (%)'
+          y: '12'
+          width: '18'
+          height: '5'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: GRAPH
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Overlay: CPU and memory %'
+        - type: graph
+          name: Reboots (uptime)
+          x: '18'
+          y: '12'
+          width: '6'
+          height: '5'
+          fields:
+          - type: INTEGER
+            name: rf_rate
+            value: '30'
+          - type: GRAPH
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Overlay: Uptime and reboots'
+      - name: Interfaces
+        widgets:
+        - type: graphprototype
+          name: Tráfego RX / TX por interface
+          width: '18'
+          height: '17'
+          fields:
+          - type: INTEGER
+            name: source_type
+            value: '2'
+          - type: INTEGER
+            name: show_legend
+            value: '1'
+          - type: INTEGER
+            name: columns
+            value: '1'
+          - type: INTEGER
+            name: rows
+            value: '4'
+          - type: GRAPH_PROTOTYPE
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Interface {#IFNAME}: Traffic'
+        - type: graphprototype
+          name: Estado operacional (1 = up · 2 = down)
+          x: '18'
+          width: '6'
+          height: '17'
+          fields:
+          - type: INTEGER
+            name: source_type
+            value: '2'
+          - type: INTEGER
+            name: show_legend
+            value: '1'
+          - type: INTEGER
+            name: columns
+            value: '1'
+          - type: INTEGER
+            name: rows
+            value: '4'
+          - type: GRAPH_PROTOTYPE
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Interface {#IFNAME}: Status'
+      - name: Qualidade
+        widgets:
+        - type: graphprototype
+          name: Erros RX / TX por interface
+          width: '12'
+          height: '17'
+          fields:
+          - type: INTEGER
+            name: source_type
+            value: '2'
+          - type: INTEGER
+            name: show_legend
+            value: '1'
+          - type: INTEGER
+            name: columns
+            value: '1'
+          - type: INTEGER
+            name: rows
+            value: '4'
+          - type: GRAPH_PROTOTYPE
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Interface {#IFNAME}: Errors'
+        - type: graphprototype
+          name: Descartes RX / TX por interface
+          x: '12'
+          width: '12'
+          height: '17'
+          fields:
+          - type: INTEGER
+            name: source_type
+            value: '2'
+          - type: INTEGER
+            name: show_legend
+            value: '1'
+          - type: INTEGER
+            name: columns
+            value: '1'
+          - type: INTEGER
+            name: rows
+            value: '4'
+          - type: GRAPH_PROTOTYPE
+            name: graphid
+            value:
+              host: MikroTik Dashboard Overlay
+              name: 'MikroTik Interface {#IFNAME}: Discards'
+    valuemaps:
+    - uuid: 1d4faf0e89b34810ba09031cfede4df7
+      name: MikroTik Overlay Availability
+      mappings:
+      - value: '0'
+        newvalue: OFFLINE
+      - value: '1'
+        newvalue: ONLINE
+  graphs:
+  - uuid: 329d8f7979154b548f02f62e56fbc2f6
+    name: 'MikroTik Overlay: CPU'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    ymax_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 66BB6A
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.cpu.util
+    show_legend: 'YES'
+  - uuid: 2be5cf71213f45d7b67482038157186e
+    name: 'MikroTik Overlay: Latency'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 66BB6A
+      item:
+        host: MikroTik Dashboard Overlay
+        key: icmppingsec[{HOST.CONN},5,20,56,1000,avg]
+    show_legend: 'YES'
+  - uuid: 99f6cb78154342669930c71a1f4cbda1
+    name: 'MikroTik Overlay: Memory used x total'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 42A5F5
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.memory.used
+    - sortorder: '1'
+      drawtype: BOLD_LINE
+      color: FDD835
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.memory.total
+    show_legend: 'YES'
+  - uuid: d26d0fa4f96a40b1bcb1430672b604ed
+    name: 'MikroTik Overlay: Packet loss'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    ymax_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: EF5350
+      item:
+        host: MikroTik Dashboard Overlay
+        key: icmppingloss[{HOST.CONN},5,20,56,1000]
+    show_legend: 'YES'
+  - uuid: c1e4474560284acabd33319f0e7e9da8
+    name: 'MikroTik Overlay: Uptime and reboots'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 66BB6A
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.system.uptime
+    show_legend: 'YES'
+  - uuid: a9e38cbaa4f8499db1e9f8792bdeeb9b
+    name: 'MikroTik Overlay: Connectivity'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 66BB6A
+      item:
+        host: MikroTik Dashboard Overlay
+        key: icmppingsec[{HOST.CONN},5,20,56,1000,avg]
+    - sortorder: '1'
+      drawtype: FILLED_REGION
+      color: EF5350
+      yaxisside: RIGHT
+      item:
+        host: MikroTik Dashboard Overlay
+        key: icmppingloss[{HOST.CONN},5,20,56,1000]
+    show_legend: 'YES'
+  - uuid: c781678c12d7496fb3538321a561d2fb
+    name: 'MikroTik Overlay: CPU and memory %'
+    show_work_period: 'NO'
+    show_triggers: 'NO'
+    ymin_type_1: FIXED
+    ymax_type_1: FIXED
+    graph_items:
+    - drawtype: GRADIENT_LINE
+      color: 4DD0E1
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.cpu.util
+    - sortorder: '1'
+      drawtype: BOLD_LINE
+      color: 9575CD
+      item:
+        host: MikroTik Dashboard Overlay
+        key: mk.overlay.memory.pct
+    show_legend: 'YES'
