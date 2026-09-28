@@ -1,0 +1,930 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "alexanderzobnin-zabbix-datasource",
+        "uid": "${DS_ZABBIX}"
+      },
+      "gridPos": {
+        "h": 90,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "baidu": {
+          "callback": "bmapReady",
+          "key": ""
+        },
+        "editor": {
+          "format": "auto"
+        },
+        "editorMode": "code",
+        "followTheme": true,
+        "gaode": {
+          "key": "",
+          "plugin": "AMap.Scale,AMap.ToolBar"
+        },
+        "getOption": "\nconst frames = context.panel.data.series || [];\nconst serviceCategory = {\"Amazon\":\"VAREJO\",\"Mercado Livre\":\"VAREJO\",\"Shopee\":\"VAREJO\",\"AliExpress\":\"VAREJO\",\"Magazine Luiza\":\"VAREJO\",\"Casas Bahia\":\"VAREJO\",\"SHEIN\":\"VAREJO\",\"iFood\":\"VAREJO\",\"Bradesco\":\"FINANCEIRO\",\"Caixa\":\"FINANCEIRO\",\"Banco do Brasil\":\"FINANCEIRO\",\"Itau\":\"FINANCEIRO\",\"Santander\":\"FINANCEIRO\",\"Nubank\":\"FINANCEIRO\",\"Inter\":\"FINANCEIRO\",\"C6 Bank\":\"FINANCEIRO\",\"PicPay\":\"FINANCEIRO\",\"Mercado Pago\":\"FINANCEIRO\",\"WhatsApp\":\"REDES_SOCIAIS\",\"Instagram\":\"REDES_SOCIAIS\",\"Facebook\":\"REDES_SOCIAIS\",\"X\":\"REDES_SOCIAIS\",\"TikTok\":\"REDES_SOCIAIS\",\"Telegram\":\"REDES_SOCIAIS\",\"Discord\":\"REDES_SOCIAIS\",\"Reddit\":\"REDES_SOCIAIS\",\"Netflix\":\"STREAMING\",\"YouTube\":\"STREAMING\",\"Prime Video\":\"STREAMING\",\"Disney Plus\":\"STREAMING\",\"Max\":\"STREAMING\",\"Globoplay\":\"STREAMING\",\"Spotify\":\"STREAMING\",\"Twitch\":\"STREAMING\",\"Apple Music\":\"STREAMING\",\"Crunchyroll\":\"STREAMING\",\"Steam\":\"JOGOS\",\"PlayStation\":\"JOGOS\",\"Xbox\":\"JOGOS\",\"Epic Games\":\"JOGOS\",\"Riot Games\":\"JOGOS\",\"EA\":\"JOGOS\",\"Ubisoft\":\"JOGOS\",\"Battle.net\":\"JOGOS\",\"Roblox\":\"JOGOS\",\"Nintendo\":\"JOGOS\",\"Google\":\"CLOUD\",\"Microsoft\":\"CLOUD\",\"Outlook\":\"CLOUD\",\"Microsoft 365\":\"CLOUD\",\"Teams\":\"CLOUD\",\"GitHub\":\"CLOUD\",\"AWS\":\"CLOUD\",\"Cloudflare\":\"CLOUD\",\"Zoom\":\"CLOUD\",\"OneDrive\":\"CLOUD\",\"Cloudflare DNS\":\"DNS_PUBLICO\",\"Google DNS\":\"DNS_PUBLICO\",\"Quad9\":\"DNS_PUBLICO\",\"OpenDNS\":\"DNS_PUBLICO\"};\nconst serviceDomain = {\"Amazon\":\"amazon.com.br\",\"Mercado Livre\":\"mercadolivre.com.br\",\"Shopee\":\"shopee.com.br\",\"AliExpress\":\"aliexpress.com\",\"Magazine Luiza\":\"magazineluiza.com.br\",\"Casas Bahia\":\"casasbahia.com.br\",\"SHEIN\":\"shein.com\",\"iFood\":\"ifood.com.br\",\"Bradesco\":\"banco.bradesco\",\"Caixa\":\"caixa.gov.br\",\"Banco do Brasil\":\"bb.com.br\",\"Itau\":\"itau.com.br\",\"Santander\":\"santander.com.br\",\"Nubank\":\"nubank.com.br\",\"Inter\":\"inter.co\",\"C6 Bank\":\"c6bank.com.br\",\"PicPay\":\"picpay.com\",\"Mercado Pago\":\"mercadopago.com.br\",\"WhatsApp\":\"whatsapp.com\",\"Instagram\":\"instagram.com\",\"Facebook\":\"facebook.com\",\"X\":\"x.com\",\"TikTok\":\"tiktok.com\",\"Telegram\":\"telegram.org\",\"Discord\":\"discord.com\",\"Reddit\":\"reddit.com\",\"Netflix\":\"netflix.com\",\"YouTube\":\"youtube.com\",\"Prime Video\":\"primevideo.com\",\"Disney Plus\":\"disneyplus.com\",\"Max\":\"max.com\",\"Globoplay\":\"globoplay.globo.com\",\"Spotify\":\"spotify.com\",\"Twitch\":\"twitch.tv\",\"Apple Music\":\"music.apple.com\",\"Crunchyroll\":\"crunchyroll.com\",\"Steam\":\"store.steampowered.com\",\"PlayStation\":\"playstation.com\",\"Xbox\":\"xbox.com\",\"Epic Games\":\"epicgames.com\",\"Riot Games\":\"riotgames.com\",\"EA\":\"ea.com\",\"Ubisoft\":\"ubisoft.com\",\"Battle.net\":\"battle.net\",\"Roblox\":\"roblox.com\",\"Nintendo\":\"nintendo.com\",\"Google\":\"google.com\",\"Microsoft\":\"microsoft.com\",\"Outlook\":\"outlook.live.com\",\"Microsoft 365\":\"office.com\",\"Teams\":\"teams.microsoft.com\",\"GitHub\":\"github.com\",\"AWS\":\"aws.amazon.com\",\"Cloudflare\":\"cloudflare.com\",\"Zoom\":\"zoom.us\",\"OneDrive\":\"onedrive.live.com\",\"Cloudflare DNS\":\"cloudflare.com\",\"Google DNS\":\"google.com\",\"Quad9\":\"quad9.net\",\"OpenDNS\":\"opendns.com\"};\nconst iconUrl = (name) => {\n  const domain = serviceDomain[name];\n  if (!domain) return '';\n  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;\n};\nconst fieldValues = (field) => {\n  if (!field || !field.values) return [];\n  if (typeof field.values.toArray === 'function') return field.values.toArray();\n  const n = typeof field.values.length === 'number' ? field.values.length : 0;\n  if (typeof field.values.get === 'function') return Array.from({length:n},(_,i)=>field.values.get(i));\n  return Array.from(field.values);\n};\nconst median = (a) => { const v=a.filter(Number.isFinite).sort((x,y)=>x-y); if(!v.length)return 0; const m=Math.floor(v.length/2); return v.length%2?v[m]:(v[m-1]+v[m])/2; };\nconst stddev = (a) => { const v=a.filter(Number.isFinite); if(!v.length)return 0; const avg=v.reduce((x,y)=>x+y,0)/v.length; return Math.sqrt(v.reduce((s,x)=>s+(x-avg)*(x-avg),0)/v.length); };\nconst services = {};\nframes.forEach((frame) => {\n  const fields=frame.fields||[];\n  const numField=fields.slice().reverse().find(f=>f.type==='number') || fields[fields.length-1];\n  const nameCandidates=[\n    frame.name,\n    numField&&numField.name,\n    numField&&numField.config&&numField.config.displayName,\n    numField&&numField.config&&numField.config.displayNameFromDS\n  ].filter(Boolean);\n  const normalized=String(nameCandidates.find(v=>\n    /^(ICMP (Ping|Loss|Response Time)|TCP 443( Response Time)?) - .+$/.test(v)\n  ) || nameCandidates[0] || '').replace(/^.*?: (?=(ICMP|TCP 443))/,'');\n  const match=normalized.match(/^(ICMP Ping|ICMP Loss|ICMP Response Time|TCP 443 Response Time|TCP 443) - (.+)$/);\n  if(!match)return;\n\n  const metric=match[1], name=match[2].trim();\n  const category=serviceCategory[name]||'OUTROS';\n  const timeField=fields.find(f=>f.type==='time') || fields[0];\n  const vals=fieldValues(numField).map(Number).filter(Number.isFinite);\n  const times=fieldValues(timeField);\n\n  if(!services[name]) services[name]={\n    name,category,ping:[],loss:[],lat:[],times:[],tcp:[],tcpLat:[],tcpTimes:[]\n  };\n\n  if(metric==='ICMP Ping') services[name].ping=vals;\n  else if(metric==='ICMP Loss') services[name].loss=vals;\n  else if(metric==='ICMP Response Time'){\n    services[name].lat=vals.map(v=>v*1000);\n    services[name].times=times;\n  } else if(metric==='TCP 443'){\n    services[name].tcp=vals;\n  } else if(metric==='TCP 443 Response Time'){\n    services[name].tcpLat=vals.map(v=>v*1000);\n    services[name].tcpTimes=times;\n  }\n});\n\nlet rows=Object.values(services).map(s=>{\n  const last=a=>a.length?a[a.length-1]:NaN;\n  const icmpResponded=s.ping.filter(v=>v>0).length;\n  const icmpHistoricallySilent=s.ping.length && icmpResponded <= Math.max(1,Math.floor(s.ping.length*0.05));\n  const tcpAvailable=s.tcp.length>0;\n  const useTcp=icmpHistoricallySilent && tcpAvailable;\n\n  let current, base, availability, ratio, jitter, status, method, loss, chartVals;\n\n  if(useTcp){\n    const tcpLat=s.tcpLat.filter(v=>v>0);\n    const tcpUp=s.tcp.filter(v=>v>0).length;\n    current=last(s.tcpLat);\n    base=median(tcpLat);\n    availability=s.tcp.length ? 100*tcpUp/s.tcp.length : 0;\n    ratio=base>0&&Number.isFinite(current)?current/base:0;\n    jitter=stddev(tcpLat);\n    method='TCP 443';\n    loss=NaN;\n    chartVals=s.tcpLat;\n\n    if(last(s.tcp)===0) status='FORA DO AR';\n    else if(ratio>3) status='MUITO LENTO';\n    else if(ratio>2) status='LENTO';\n    else if(ratio>1.5) status='ATENÇÃO';\n    else status='OK';\n  } else {\n    const lat=s.lat.filter(v=>v>0);\n    current=last(s.lat);\n    base=median(lat);\n    loss=last(s.loss);\n    availability=s.ping.length ? 100*icmpResponded/s.ping.length : 0;\n    ratio=base>0&&Number.isFinite(current)?current/base:0;\n    jitter=stddev(lat);\n    method='ICMP';\n    chartVals=s.lat;\n\n    status='OK';\n    if(icmpHistoricallySilent) status='SEM ICMP';\n    else if(last(s.ping)===0 && icmpResponded>0) status='FORA DO AR';\n    else if(loss>0 && loss<100) status='PERDA';\n    else if(ratio>3) status='MUITO LENTO';\n    else if(ratio>2) status='LENTO';\n    else if(ratio>1.5) status='ATENÇÃO';\n  }\n\n  return {\n    ...s,current,base,\n    loss:Number.isFinite(loss)?loss:0,\n    availability,ratio,status,jitter,method,useTcp,chartVals\n  };\n});\nconst selectedCat=context.grafana.replaceVariables('$categoria');\nconst selectedStatus=context.grafana.replaceVariables('$estado');\nconst selectedService = context.grafana.replaceVariables('$servico');\nrows=rows.filter(r=>(selectedCat==='Todas'||selectedCat===''||r.category===selectedCat) &&\n  (selectedStatus==='Todos'||selectedStatus===''||r.status===selectedStatus||\n   (selectedStatus==='LENTO'&&(r.status==='LENTO'||r.status==='MUITO LENTO'))) && (selectedService === 'Todos' || selectedService === '' || r.name === selectedService));\nconst all=Object.values(services); const colors={'OK':'#73BF69','ATENÇÃO':'#F2CC0C','LENTO':'#FF9830','MUITO LENTO':'#FF780A','PERDA':'#FF9830','FORA DO AR':'#F2495C','SEM ICMP':'#5794F2'};\nconst W=context.panel.chart.getWidth(); const cols=W>1700?5:W>1300?4:3; const gap=12; const margin=18; const cardW=(W-margin*2-gap*(cols-1))/cols;\nconst graphics=[]; const txt=(x,y,text,size,color='#D8D9DA',weight=400,align='left')=>({type:'text',silent:true,style:{x,y,text,fill:color,font:`${weight} ${size}px Inter, sans-serif`,align,verticalAlign:'middle'}});\ngraphics.push({type:'rect',silent:true,shape:{x:0,y:0,width:W,height:96},style:{fill:'#11161D'}});\ngraphics.push(txt(24,25,'SYNTHETIC MONITORING',15,'#21B8E6',700)); graphics.push(txt(24,53,'Experiência de Internet',26,'#F4F6F8',700));\ngraphics.push(txt(24,78,'Monitoramento sintético · serviços essenciais por categoria',13,'#8E99A4'));\ngraphics.push(txt(W-24,36,'60 SERVIÇOS  ·  7 CATEGORIAS',13,'#B8C1CC',600,'right'));\ngraphics.push({type:'rect',silent:true,shape:{x:0,y:94,width:W,height:2},style:{fill:'#21B8E6',opacity:.85}});\nconst kpis=[['NA FAIXA HABITUAL',rows.filter(r=>r.status==='OK').length,'#73BF69'],['LENTOS',rows.filter(r=>['LENTO','MUITO LENTO','ATENÇÃO'].includes(r.status)).length,'#FF9830'],['COM PERDA',rows.filter(r=>r.status==='PERDA').length,'#FF9830'],['FORA DO AR',rows.filter(r=>r.status==='FORA DO AR').length,'#F2495C'],['FALLBACK TCP',rows.filter(r=>r.useTcp).length,'#5794F2'],['TEMPO MEDIANO',`${median(rows.map(r=>r.current)) .toFixed(1)} ms`,'#B8C1CC'],['DISPONIBILIDADE',`${median(rows.filter(r=>r.status!=='SEM ICMP').map(r=>r.availability)).toFixed(1)}%`,'#73BF69']];\nconst kw=(W-margin*2-gap*6)/7; kpis.forEach((k,i)=>{const x=margin+i*(kw+gap);graphics.push({type:'rect',silent:true,shape:{x,y:112,width:kw,height:78,r:7},style:{fill:'#181D24',stroke:'#2A323C'}});graphics.push(txt(x+12,132,k[0],10,'#8E99A4',600));graphics.push(txt(x+12,163,String(k[1]),24,k[2],700));});\nlet y=208; const catW=(W-margin*2-gap*6)/7;\n['VAREJO','FINANCEIRO','REDES_SOCIAIS','STREAMING','JOGOS','CLOUD','DNS_PUBLICO'].forEach((cat,i)=>{const cr=rows.filter(r=>r.category===cat);const normal=cr.filter(r=>r.status==='OK').length;const sem=cr.filter(r=>r.status==='SEM ICMP').length;const tcp=cr.filter(r=>r.useTcp).length;const degraded=cr.filter(r=>!['OK','SEM ICMP'].includes(r.status)).length;const x=margin+i*(catW+gap);graphics.push({type:'rect',silent:true,shape:{x,y,width:catW,height:76,r:6},style:{fill:'#151A20',stroke:'#27303A'}});graphics.push(txt(x+10,y+16,cat.replace('_',' '),11,'#D8D9DA',650));graphics.push(txt(x+10,y+38,`${cr.length} total · ${normal} normais`,10,'#8E99A4'));graphics.push(txt(x+10,y+57,`${degraded} degrad. · ${tcp} TCP · ${sem} sem monitor · ${median(cr.map(r=>r.current)).toFixed(0)} ms`,9,'#8E99A4'));});\ny+=94; const diagW=W*0.40; const rankW=(W-margin*2-gap*2-diagW)/2;\nconst panels=[{x:margin,w:diagW,title:'DIAGNÓSTICO',lines:[`${rows.filter(r=>r.ratio>2).length} serviços acima de 2x da baseline`,`${rows.filter(r=>r.status==='PERDA').length} serviços com perda`,`${rows.filter(r=>r.status==='FORA DO AR').length} serviços fora do ar`,`${rows.filter(r=>r.useTcp).length} serviços validados via TCP/443`,`${rows.filter(r=>r.status==='SEM ICMP').length} sem ICMP e sem fallback`,`${rows.filter(r=>r.status==='OK').length} dentro da faixa habitual`]},{x:margin+diagW+gap,w:rankW,title:'PIORES VS BASE',lines:rows.filter(r=>r.base>0).sort((a,b)=>b.ratio-a.ratio).slice(0,5).map(r=>`${r.name}  ${r.ratio.toFixed(1)}x  ${r.current.toFixed(0)} ms / base ${r.base.toFixed(0)} ms`)},{x:margin+diagW+gap+rankW+gap,w:rankW,title:'MAIS INSTÁVEIS',lines:rows.slice().sort((a,b)=>b.jitter-a.jitter).slice(0,5).map(r=>`${r.name}  variação ${r.jitter.toFixed(1)} ms`)}];\npanels.forEach(p=>{graphics.push({type:'rect',silent:true,shape:{x:p.x,y,width:p.w,height:130,r:7},style:{fill:'#181D24',stroke:'#2A323C'}});graphics.push(txt(p.x+13,y+18,p.title,12,'#B8C1CC',700));p.lines.forEach((l,i)=>graphics.push(txt(p.x+13,y+43+i*17,l,10,i===0?'#D8D9DA':'#9AA5B1',500)));});\ny+=150; graphics.push(txt(margin,y,'SERVIÇOS',13,'#B8C1CC',700)); y+=18;\nrows.sort((a,b)=>a.category.localeCompare(b.category)||a.name.localeCompare(b.name)).forEach((r,i)=>{const col=i%cols,row=Math.floor(i/cols),x=margin+col*(cardW+gap),cy=y+row*138; const c=colors[r.status]||'#8E99A4';graphics.push({type:'rect',silent:true,shape:{x,y:cy,width:cardW,height:126,r:7},style:{fill:'#171C23',stroke:'#2B333D'}});graphics.push({type:'rect',silent:true,shape:{x,y:cy,width:4,height:126,r:[7,0,0,7]},style:{fill:c}});const ico=iconUrl(r.name);graphics.push({type:'rect',silent:true,shape:{x:x+12,y:cy+9,width:24,height:24,r:5},style:{fill:'#202832',stroke:'#303B47',lineWidth:1}});if(ico){graphics.push({type:'image',silent:true,style:{image:ico,x:x+15,y:cy+12,width:18,height:18,opacity:1}});}graphics.push(txt(x+44,cy+18,r.name,13,'#F0F2F5',650));graphics.push(txt(x+44,cy+38,r.category.replace('_',' '),9,'#7F8A96',600));graphics.push(txt(x+14,cy+68,Number.isFinite(r.current)?`${r.current.toFixed(1)} ms`:'—',23,c,700));graphics.push(txt(x+cardW-14,cy+22,r.status,10,c,700,'right'));\n  const vals=(r.chartVals||[]).filter(Number.isFinite).slice(-30); if(vals.length>1){const mn=Math.min(...vals),mx=Math.max(...vals),span=Math.max(0.001,mx-mn);const px=x+cardW*0.48,pw=cardW*0.47,py=cy+54,ph=31;const points=vals.map((v,j)=>[px+j*pw/(vals.length-1),py+ph-(v-mn)*ph/span]);graphics.push({type:'polyline',silent:true,shape:{points},style:{stroke:c,lineWidth:1.5,fill:null,opacity:.9}});}\n  graphics.push(txt(x+14,cy+106,`base ${r.base.toFixed(1)} ms`,9,'#8E99A4'));graphics.push(txt(x+cardW*.42,cy+106,r.useTcp?'TCP 443 OK':`perda ${r.loss.toFixed(1)}%`,9,r.useTcp?'#5794F2':'#8E99A4'));graphics.push(txt(x+cardW-14,cy+106,`disp. ${r.availability.toFixed(1)}%`,9,'#8E99A4',400,'right'));});\nif(!rows.length) graphics.push(txt(W/2,y+80,'Nenhum serviço corresponde aos filtros atuais',14,'#8E99A4',500,'center'));\nreturn {backgroundColor:'#0B0F14',animation:false,tooltip:{show:false},graphic:graphics};\n",
+        "google": {
+          "callback": "gmapReady",
+          "key": ""
+        },
+        "map": {},
+        "renderer": "canvas",
+        "resize": true,
+        "themeEditor": {
+          "config": "{}",
+          "name": "default"
+        },
+        "visualEditor": {
+          "code": "console.log(context);\nreturn {\n  dataset: context.editor.dataset,\n  series: context.editor.series,\n  xAxis: {\n    type: 'time',\n  },\n  yAxis: {\n    type: 'value',\n    min: 'dataMin',\n  },\n}\n",
+          "dataset": [],
+          "series": []
+        }
+      },
+      "pluginVersion": "5.3.0",
+      "targets": [
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$__zbx_item"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "host": {
+            "filter": "Synthetic Monitoring - Internet Services"
+          },
+          "item": {
+            "filter": "/^ICMP Ping - .*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": true,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "P",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$__zbx_item"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "host": {
+            "filter": "Synthetic Monitoring - Internet Services"
+          },
+          "item": {
+            "filter": "/^ICMP Loss - .*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": true,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "L",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$__zbx_item"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "host": {
+            "filter": "Synthetic Monitoring - Internet Services"
+          },
+          "item": {
+            "filter": "/^ICMP Response Time - .*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": true,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "R",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$__zbx_item"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "host": {
+            "filter": "Synthetic Monitoring - Internet Services"
+          },
+          "item": {
+            "filter": "/^TCP 443 - .*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": true,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "T",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        },
+        {
+          "application": {
+            "filter": ""
+          },
+          "datasource": {
+            "type": "alexanderzobnin-zabbix-datasource",
+            "uid": "${DS_ZABBIX}"
+          },
+          "functions": [
+            {
+              "added": true,
+              "def": {
+                "category": "Alias",
+                "defaultParams": [],
+                "name": "setAlias",
+                "params": [
+                  {
+                    "name": "alias",
+                    "type": "string"
+                  }
+                ]
+              },
+              "params": [
+                "$__zbx_item"
+              ],
+              "text": "setAlias()"
+            }
+          ],
+          "group": {
+            "filter": "Synthetic Monitoring"
+          },
+          "host": {
+            "filter": "Synthetic Monitoring - Internet Services"
+          },
+          "item": {
+            "filter": "/^TCP 443 Response Time - .*/"
+          },
+          "itemTag": {
+            "filter": ""
+          },
+          "macro": {
+            "filter": ""
+          },
+          "options": {
+            "count": false,
+            "disableDataAlignment": true,
+            "showDisabledItems": false,
+            "skipEmptyValues": false,
+            "useTrends": "default",
+            "useZabbixValueMapping": false
+          },
+          "proxy": {
+            "filter": ""
+          },
+          "queryType": "0",
+          "refId": "TR",
+          "resultFormat": "time_series",
+          "schema": 12,
+          "table": {
+            "skipEmptyValues": false
+          },
+          "tags": {
+            "filter": ""
+          },
+          "textFilter": "",
+          "trigger": {
+            "filter": ""
+          },
+          "triggers": {
+            "acknowledged": 2
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "volkovlabs-echarts-panel"
+    }
+  ],
+  "refresh": "30s",
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [
+    "SYNTHETIC",
+    "INTERNET",
+    "ZABBIX",
+    "GRAFANA",
+    "NETWORK-MONITORING",
+    "TCP-FALLBACK"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "Todas",
+          "value": "Todas"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Categoria",
+        "multi": false,
+        "name": "categoria",
+        "options": [
+          {
+            "selected": true,
+            "text": "Todas",
+            "value": "Todas"
+          },
+          {
+            "selected": false,
+            "text": "VAREJO",
+            "value": "VAREJO"
+          },
+          {
+            "selected": false,
+            "text": "FINANCEIRO",
+            "value": "FINANCEIRO"
+          },
+          {
+            "selected": false,
+            "text": "REDES_SOCIAIS",
+            "value": "REDES_SOCIAIS"
+          },
+          {
+            "selected": false,
+            "text": "STREAMING",
+            "value": "STREAMING"
+          },
+          {
+            "selected": false,
+            "text": "JOGOS",
+            "value": "JOGOS"
+          },
+          {
+            "selected": false,
+            "text": "CLOUD",
+            "value": "CLOUD"
+          },
+          {
+            "selected": false,
+            "text": "DNS_PUBLICO",
+            "value": "DNS_PUBLICO"
+          }
+        ],
+        "query": "Todas,VAREJO,FINANCEIRO,REDES_SOCIAIS,STREAMING,JOGOS,CLOUD,DNS_PUBLICO",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Todos",
+          "value": "Todos"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Estado",
+        "multi": false,
+        "name": "estado",
+        "options": [
+          {
+            "selected": true,
+            "text": "Todos",
+            "value": "Todos"
+          },
+          {
+            "selected": false,
+            "text": "OK",
+            "value": "OK"
+          },
+          {
+            "selected": false,
+            "text": "ATENÇÃO",
+            "value": "ATENÇÃO"
+          },
+          {
+            "selected": false,
+            "text": "LENTO",
+            "value": "LENTO"
+          },
+          {
+            "selected": false,
+            "text": "PERDA",
+            "value": "PERDA"
+          },
+          {
+            "selected": false,
+            "text": "FORA DO AR",
+            "value": "FORA DO AR"
+          },
+          {
+            "selected": false,
+            "text": "SEM ICMP",
+            "value": "SEM ICMP"
+          }
+        ],
+        "query": "Todos,OK,ATENÇÃO,LENTO,PERDA,FORA DO AR,SEM ICMP",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Todos",
+          "value": "Todos"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Serviço",
+        "multi": false,
+        "name": "servico",
+        "options": [
+          {
+            "selected": true,
+            "text": "Todos",
+            "value": "Todos"
+          },
+          {
+            "selected": false,
+            "text": "AWS",
+            "value": "AWS"
+          },
+          {
+            "selected": false,
+            "text": "AliExpress",
+            "value": "AliExpress"
+          },
+          {
+            "selected": false,
+            "text": "Amazon",
+            "value": "Amazon"
+          },
+          {
+            "selected": false,
+            "text": "Apple Music",
+            "value": "Apple Music"
+          },
+          {
+            "selected": false,
+            "text": "Banco do Brasil",
+            "value": "Banco do Brasil"
+          },
+          {
+            "selected": false,
+            "text": "Battle.net",
+            "value": "Battle.net"
+          },
+          {
+            "selected": false,
+            "text": "Bradesco",
+            "value": "Bradesco"
+          },
+          {
+            "selected": false,
+            "text": "C6 Bank",
+            "value": "C6 Bank"
+          },
+          {
+            "selected": false,
+            "text": "Caixa",
+            "value": "Caixa"
+          },
+          {
+            "selected": false,
+            "text": "Casas Bahia",
+            "value": "Casas Bahia"
+          },
+          {
+            "selected": false,
+            "text": "Cloudflare",
+            "value": "Cloudflare"
+          },
+          {
+            "selected": false,
+            "text": "Cloudflare DNS",
+            "value": "Cloudflare DNS"
+          },
+          {
+            "selected": false,
+            "text": "Crunchyroll",
+            "value": "Crunchyroll"
+          },
+          {
+            "selected": false,
+            "text": "Discord",
+            "value": "Discord"
+          },
+          {
+            "selected": false,
+            "text": "Disney Plus",
+            "value": "Disney Plus"
+          },
+          {
+            "selected": false,
+            "text": "EA",
+            "value": "EA"
+          },
+          {
+            "selected": false,
+            "text": "Epic Games",
+            "value": "Epic Games"
+          },
+          {
+            "selected": false,
+            "text": "Facebook",
+            "value": "Facebook"
+          },
+          {
+            "selected": false,
+            "text": "GitHub",
+            "value": "GitHub"
+          },
+          {
+            "selected": false,
+            "text": "Globoplay",
+            "value": "Globoplay"
+          },
+          {
+            "selected": false,
+            "text": "Google",
+            "value": "Google"
+          },
+          {
+            "selected": false,
+            "text": "Google DNS",
+            "value": "Google DNS"
+          },
+          {
+            "selected": false,
+            "text": "Instagram",
+            "value": "Instagram"
+          },
+          {
+            "selected": false,
+            "text": "Inter",
+            "value": "Inter"
+          },
+          {
+            "selected": false,
+            "text": "Itau",
+            "value": "Itau"
+          },
+          {
+            "selected": false,
+            "text": "Magazine Luiza",
+            "value": "Magazine Luiza"
+          },
+          {
+            "selected": false,
+            "text": "Max",
+            "value": "Max"
+          },
+          {
+            "selected": false,
+            "text": "Mercado Livre",
+            "value": "Mercado Livre"
+          },
+          {
+            "selected": false,
+            "text": "Mercado Pago",
+            "value": "Mercado Pago"
+          },
+          {
+            "selected": false,
+            "text": "Microsoft",
+            "value": "Microsoft"
+          },
+          {
+            "selected": false,
+            "text": "Microsoft 365",
+            "value": "Microsoft 365"
+          },
+          {
+            "selected": false,
+            "text": "Netflix",
+            "value": "Netflix"
+          },
+          {
+            "selected": false,
+            "text": "Nintendo",
+            "value": "Nintendo"
+          },
+          {
+            "selected": false,
+            "text": "Nubank",
+            "value": "Nubank"
+          },
+          {
+            "selected": false,
+            "text": "OneDrive",
+            "value": "OneDrive"
+          },
+          {
+            "selected": false,
+            "text": "OpenDNS",
+            "value": "OpenDNS"
+          },
+          {
+            "selected": false,
+            "text": "Outlook",
+            "value": "Outlook"
+          },
+          {
+            "selected": false,
+            "text": "PicPay",
+            "value": "PicPay"
+          },
+          {
+            "selected": false,
+            "text": "PlayStation",
+            "value": "PlayStation"
+          },
+          {
+            "selected": false,
+            "text": "Prime Video",
+            "value": "Prime Video"
+          },
+          {
+            "selected": false,
+            "text": "Quad9",
+            "value": "Quad9"
+          },
+          {
+            "selected": false,
+            "text": "Reddit",
+            "value": "Reddit"
+          },
+          {
+            "selected": false,
+            "text": "Riot Games",
+            "value": "Riot Games"
+          },
+          {
+            "selected": false,
+            "text": "Roblox",
+            "value": "Roblox"
+          },
+          {
+            "selected": false,
+            "text": "SHEIN",
+            "value": "SHEIN"
+          },
+          {
+            "selected": false,
+            "text": "Santander",
+            "value": "Santander"
+          },
+          {
+            "selected": false,
+            "text": "Shopee",
+            "value": "Shopee"
+          },
+          {
+            "selected": false,
+            "text": "Spotify",
+            "value": "Spotify"
+          },
+          {
+            "selected": false,
+            "text": "Steam",
+            "value": "Steam"
+          },
+          {
+            "selected": false,
+            "text": "Teams",
+            "value": "Teams"
+          },
+          {
+            "selected": false,
+            "text": "Telegram",
+            "value": "Telegram"
+          },
+          {
+            "selected": false,
+            "text": "TikTok",
+            "value": "TikTok"
+          },
+          {
+            "selected": false,
+            "text": "Twitch",
+            "value": "Twitch"
+          },
+          {
+            "selected": false,
+            "text": "Ubisoft",
+            "value": "Ubisoft"
+          },
+          {
+            "selected": false,
+            "text": "WhatsApp",
+            "value": "WhatsApp"
+          },
+          {
+            "selected": false,
+            "text": "X",
+            "value": "X"
+          },
+          {
+            "selected": false,
+            "text": "Xbox",
+            "value": "Xbox"
+          },
+          {
+            "selected": false,
+            "text": "YouTube",
+            "value": "YouTube"
+          },
+          {
+            "selected": false,
+            "text": "Zoom",
+            "value": "Zoom"
+          },
+          {
+            "selected": false,
+            "text": "iFood",
+            "value": "iFood"
+          }
+        ],
+        "query": "Todos,AWS,AliExpress,Amazon,Apple Music,Banco do Brasil,Battle.net,Bradesco,C6 Bank,Caixa,Casas Bahia,Cloudflare,Cloudflare DNS,Crunchyroll,Discord,Disney Plus,EA,Epic Games,Facebook,GitHub,Globoplay,Google,Google DNS,Instagram,Inter,Itau,Magazine Luiza,Max,Mercado Livre,Mercado Pago,Microsoft,Microsoft 365,Netflix,Nintendo,Nubank,OneDrive,OpenDNS,Outlook,PicPay,PlayStation,Prime Video,Quad9,Reddit,Riot Games,Roblox,SHEIN,Santander,Shopee,Spotify,Steam,Teams,Telegram,TikTok,Twitch,Ubisoft,WhatsApp,X,Xbox,YouTube,Zoom,iFood",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Experiência de Internet | Synthetic Monitoring",
+  "uid": null,
+  "version": 1,
+  "weekStart": "",
+  "description": "Dashboard público de monitoramento sintético para Zabbix + Grafana. Projetado para uso com o host 'Synthetic Monitoring - Internet Services' no grupo 'Synthetic Monitoring'.",
+  "__inputs": [
+    {
+      "name": "DS_ZABBIX",
+      "label": "Zabbix",
+      "description": "Selecione o datasource Zabbix deste Grafana",
+      "type": "datasource",
+      "pluginId": "alexanderzobnin-zabbix-datasource",
+      "pluginName": "Zabbix"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "9.4.7"
+    },
+    {
+      "type": "panel",
+      "id": "volkovlabs-echarts-panel",
+      "name": "Business Charts / Apache ECharts",
+      "version": "5.3.0"
+    },
+    {
+      "type": "datasource",
+      "id": "alexanderzobnin-zabbix-datasource",
+      "name": "Zabbix",
+      "version": ""
+    }
+  ]
+}
