@@ -1,0 +1,2880 @@
+zabbix_export:
+  version: '6.4'
+  host_groups:
+  - uuid: 41f631920a0e40cd9b63c3e6c5157972
+    name: Synthetic Monitoring
+  hosts:
+  - host: Synthetic Monitoring - Internet Services
+    name: Synthetic Monitoring - Internet Services
+    groups:
+    - name: Synthetic Monitoring
+    items:
+    - name: ICMP Loss - Cloudflare DNS
+      type: SIMPLE
+      key: icmppingloss[1.1.1.1]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Cloudflare DNS
+      - tag: target
+        value: 1.1.1.1
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Google DNS
+      type: SIMPLE
+      key: icmppingloss[8.8.8.8]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Google DNS
+      - tag: target
+        value: 8.8.8.8
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Quad9
+      type: SIMPLE
+      key: icmppingloss[9.9.9.9]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Quad9
+      - tag: target
+        value: 9.9.9.9
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - OpenDNS
+      type: SIMPLE
+      key: icmppingloss[208.67.222.222]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: OpenDNS
+      - tag: target
+        value: 208.67.222.222
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - AliExpress
+      type: SIMPLE
+      key: icmppingloss[aliexpress.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: AliExpress
+      - tag: target
+        value: aliexpress.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Amazon
+      type: SIMPLE
+      key: icmppingloss[amazon.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Amazon
+      - tag: target
+        value: amazon.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - AWS
+      type: SIMPLE
+      key: icmppingloss[aws.amazon.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: AWS
+      - tag: target
+        value: aws.amazon.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Bradesco
+      type: SIMPLE
+      key: icmppingloss[banco.bradesco]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Bradesco
+      - tag: target
+        value: banco.bradesco
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Battle.net
+      type: SIMPLE
+      key: icmppingloss[battle.net]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Battle.net
+      - tag: target
+        value: battle.net
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Banco do Brasil
+      type: SIMPLE
+      key: icmppingloss[bb.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Banco do Brasil
+      - tag: target
+        value: bb.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - C6 Bank
+      type: SIMPLE
+      key: icmppingloss[c6bank.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: C6 Bank
+      - tag: target
+        value: c6bank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Caixa
+      type: SIMPLE
+      key: icmppingloss[caixa.gov.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Caixa
+      - tag: target
+        value: caixa.gov.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Casas Bahia
+      type: SIMPLE
+      key: icmppingloss[casasbahia.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Casas Bahia
+      - tag: target
+        value: casasbahia.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Cloudflare
+      type: SIMPLE
+      key: icmppingloss[cloudflare.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Cloudflare
+      - tag: target
+        value: cloudflare.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Crunchyroll
+      type: SIMPLE
+      key: icmppingloss[crunchyroll.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Crunchyroll
+      - tag: target
+        value: crunchyroll.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Discord
+      type: SIMPLE
+      key: icmppingloss[discord.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Discord
+      - tag: target
+        value: discord.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Disney Plus
+      type: SIMPLE
+      key: icmppingloss[disneyplus.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Disney Plus
+      - tag: target
+        value: disneyplus.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - EA
+      type: SIMPLE
+      key: icmppingloss[ea.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: EA
+      - tag: target
+        value: ea.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Epic Games
+      type: SIMPLE
+      key: icmppingloss[epicgames.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Epic Games
+      - tag: target
+        value: epicgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Facebook
+      type: SIMPLE
+      key: icmppingloss[facebook.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Facebook
+      - tag: target
+        value: facebook.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - GitHub
+      type: SIMPLE
+      key: icmppingloss[github.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: GitHub
+      - tag: target
+        value: github.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Globoplay
+      type: SIMPLE
+      key: icmppingloss[globoplay.globo.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Globoplay
+      - tag: target
+        value: globoplay.globo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Google
+      type: SIMPLE
+      key: icmppingloss[google.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Google
+      - tag: target
+        value: google.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - iFood
+      type: SIMPLE
+      key: icmppingloss[ifood.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: iFood
+      - tag: target
+        value: ifood.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Instagram
+      type: SIMPLE
+      key: icmppingloss[instagram.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Instagram
+      - tag: target
+        value: instagram.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Inter
+      type: SIMPLE
+      key: icmppingloss[inter.co]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Inter
+      - tag: target
+        value: inter.co
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Itau
+      type: SIMPLE
+      key: icmppingloss[itau.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Itau
+      - tag: target
+        value: itau.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Magazine Luiza
+      type: SIMPLE
+      key: icmppingloss[magazineluiza.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Magazine Luiza
+      - tag: target
+        value: magazineluiza.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Max
+      type: SIMPLE
+      key: icmppingloss[max.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Max
+      - tag: target
+        value: max.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Mercado Livre
+      type: SIMPLE
+      key: icmppingloss[mercadolivre.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Mercado Livre
+      - tag: target
+        value: mercadolivre.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Mercado Pago
+      type: SIMPLE
+      key: icmppingloss[mercadopago.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Mercado Pago
+      - tag: target
+        value: mercadopago.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Microsoft
+      type: SIMPLE
+      key: icmppingloss[microsoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft
+      - tag: target
+        value: microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Apple Music
+      type: SIMPLE
+      key: icmppingloss[music.apple.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Apple Music
+      - tag: target
+        value: music.apple.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Netflix
+      type: SIMPLE
+      key: icmppingloss[netflix.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Netflix
+      - tag: target
+        value: netflix.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Nintendo
+      type: SIMPLE
+      key: icmppingloss[nintendo.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Nintendo
+      - tag: target
+        value: nintendo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Nubank
+      type: SIMPLE
+      key: icmppingloss[nubank.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Nubank
+      - tag: target
+        value: nubank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Microsoft 365
+      type: SIMPLE
+      key: icmppingloss[office.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft 365
+      - tag: target
+        value: office.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - OneDrive
+      type: SIMPLE
+      key: icmppingloss[onedrive.live.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: OneDrive
+      - tag: target
+        value: onedrive.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Outlook
+      type: SIMPLE
+      key: icmppingloss[outlook.live.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Outlook
+      - tag: target
+        value: outlook.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - PicPay
+      type: SIMPLE
+      key: icmppingloss[picpay.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: PicPay
+      - tag: target
+        value: picpay.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - PlayStation
+      type: SIMPLE
+      key: icmppingloss[playstation.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: PlayStation
+      - tag: target
+        value: playstation.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Prime Video
+      type: SIMPLE
+      key: icmppingloss[primevideo.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Prime Video
+      - tag: target
+        value: primevideo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Reddit
+      type: SIMPLE
+      key: icmppingloss[reddit.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Reddit
+      - tag: target
+        value: reddit.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Riot Games
+      type: SIMPLE
+      key: icmppingloss[riotgames.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Riot Games
+      - tag: target
+        value: riotgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Roblox
+      type: SIMPLE
+      key: icmppingloss[roblox.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Roblox
+      - tag: target
+        value: roblox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Santander
+      type: SIMPLE
+      key: icmppingloss[santander.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Santander
+      - tag: target
+        value: santander.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - SHEIN
+      type: SIMPLE
+      key: icmppingloss[shein.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: SHEIN
+      - tag: target
+        value: shein.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Shopee
+      type: SIMPLE
+      key: icmppingloss[shopee.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Shopee
+      - tag: target
+        value: shopee.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Spotify
+      type: SIMPLE
+      key: icmppingloss[spotify.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Spotify
+      - tag: target
+        value: spotify.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Steam
+      type: SIMPLE
+      key: icmppingloss[store.steampowered.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Steam
+      - tag: target
+        value: store.steampowered.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Teams
+      type: SIMPLE
+      key: icmppingloss[teams.microsoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Teams
+      - tag: target
+        value: teams.microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Telegram
+      type: SIMPLE
+      key: icmppingloss[telegram.org]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Telegram
+      - tag: target
+        value: telegram.org
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - TikTok
+      type: SIMPLE
+      key: icmppingloss[tiktok.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: TikTok
+      - tag: target
+        value: tiktok.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Twitch
+      type: SIMPLE
+      key: icmppingloss[twitch.tv]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Twitch
+      - tag: target
+        value: twitch.tv
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Ubisoft
+      type: SIMPLE
+      key: icmppingloss[ubisoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Ubisoft
+      - tag: target
+        value: ubisoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - WhatsApp
+      type: SIMPLE
+      key: icmppingloss[whatsapp.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: WhatsApp
+      - tag: target
+        value: whatsapp.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - X
+      type: SIMPLE
+      key: icmppingloss[x.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: X
+      - tag: target
+        value: x.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Xbox
+      type: SIMPLE
+      key: icmppingloss[xbox.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Xbox
+      - tag: target
+        value: xbox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - YouTube
+      type: SIMPLE
+      key: icmppingloss[youtube.com]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: YouTube
+      - tag: target
+        value: youtube.com
+      - tag: type
+        value: icmp
+    - name: ICMP Loss - Zoom
+      type: SIMPLE
+      key: icmppingloss[zoom.us]
+      history: 7d
+      value_type: FLOAT
+      units: '%'
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Zoom
+      - tag: target
+        value: zoom.us
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Cloudflare DNS
+      type: SIMPLE
+      key: icmppingsec[1.1.1.1]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Cloudflare DNS
+      - tag: target
+        value: 1.1.1.1
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Google DNS
+      type: SIMPLE
+      key: icmppingsec[8.8.8.8]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Google DNS
+      - tag: target
+        value: 8.8.8.8
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Quad9
+      type: SIMPLE
+      key: icmppingsec[9.9.9.9]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Quad9
+      - tag: target
+        value: 9.9.9.9
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - OpenDNS
+      type: SIMPLE
+      key: icmppingsec[208.67.222.222]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: OpenDNS
+      - tag: target
+        value: 208.67.222.222
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - AliExpress
+      type: SIMPLE
+      key: icmppingsec[aliexpress.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: AliExpress
+      - tag: target
+        value: aliexpress.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Amazon
+      type: SIMPLE
+      key: icmppingsec[amazon.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Amazon
+      - tag: target
+        value: amazon.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - AWS
+      type: SIMPLE
+      key: icmppingsec[aws.amazon.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: AWS
+      - tag: target
+        value: aws.amazon.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Bradesco
+      type: SIMPLE
+      key: icmppingsec[banco.bradesco]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Bradesco
+      - tag: target
+        value: banco.bradesco
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Battle.net
+      type: SIMPLE
+      key: icmppingsec[battle.net]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Battle.net
+      - tag: target
+        value: battle.net
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Banco do Brasil
+      type: SIMPLE
+      key: icmppingsec[bb.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Banco do Brasil
+      - tag: target
+        value: bb.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - C6 Bank
+      type: SIMPLE
+      key: icmppingsec[c6bank.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: C6 Bank
+      - tag: target
+        value: c6bank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Caixa
+      type: SIMPLE
+      key: icmppingsec[caixa.gov.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Caixa
+      - tag: target
+        value: caixa.gov.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Casas Bahia
+      type: SIMPLE
+      key: icmppingsec[casasbahia.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Casas Bahia
+      - tag: target
+        value: casasbahia.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Cloudflare
+      type: SIMPLE
+      key: icmppingsec[cloudflare.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Cloudflare
+      - tag: target
+        value: cloudflare.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Crunchyroll
+      type: SIMPLE
+      key: icmppingsec[crunchyroll.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Crunchyroll
+      - tag: target
+        value: crunchyroll.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Discord
+      type: SIMPLE
+      key: icmppingsec[discord.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Discord
+      - tag: target
+        value: discord.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Disney Plus
+      type: SIMPLE
+      key: icmppingsec[disneyplus.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Disney Plus
+      - tag: target
+        value: disneyplus.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - EA
+      type: SIMPLE
+      key: icmppingsec[ea.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: EA
+      - tag: target
+        value: ea.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Epic Games
+      type: SIMPLE
+      key: icmppingsec[epicgames.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Epic Games
+      - tag: target
+        value: epicgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Facebook
+      type: SIMPLE
+      key: icmppingsec[facebook.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Facebook
+      - tag: target
+        value: facebook.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - GitHub
+      type: SIMPLE
+      key: icmppingsec[github.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: GitHub
+      - tag: target
+        value: github.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Globoplay
+      type: SIMPLE
+      key: icmppingsec[globoplay.globo.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Globoplay
+      - tag: target
+        value: globoplay.globo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Google
+      type: SIMPLE
+      key: icmppingsec[google.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Google
+      - tag: target
+        value: google.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - iFood
+      type: SIMPLE
+      key: icmppingsec[ifood.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: iFood
+      - tag: target
+        value: ifood.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Instagram
+      type: SIMPLE
+      key: icmppingsec[instagram.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Instagram
+      - tag: target
+        value: instagram.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Inter
+      type: SIMPLE
+      key: icmppingsec[inter.co]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Inter
+      - tag: target
+        value: inter.co
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Itau
+      type: SIMPLE
+      key: icmppingsec[itau.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Itau
+      - tag: target
+        value: itau.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Magazine Luiza
+      type: SIMPLE
+      key: icmppingsec[magazineluiza.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Magazine Luiza
+      - tag: target
+        value: magazineluiza.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Max
+      type: SIMPLE
+      key: icmppingsec[max.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Max
+      - tag: target
+        value: max.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Mercado Livre
+      type: SIMPLE
+      key: icmppingsec[mercadolivre.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Mercado Livre
+      - tag: target
+        value: mercadolivre.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Mercado Pago
+      type: SIMPLE
+      key: icmppingsec[mercadopago.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Mercado Pago
+      - tag: target
+        value: mercadopago.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Microsoft
+      type: SIMPLE
+      key: icmppingsec[microsoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft
+      - tag: target
+        value: microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Apple Music
+      type: SIMPLE
+      key: icmppingsec[music.apple.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Apple Music
+      - tag: target
+        value: music.apple.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Netflix
+      type: SIMPLE
+      key: icmppingsec[netflix.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Netflix
+      - tag: target
+        value: netflix.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Nintendo
+      type: SIMPLE
+      key: icmppingsec[nintendo.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Nintendo
+      - tag: target
+        value: nintendo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Nubank
+      type: SIMPLE
+      key: icmppingsec[nubank.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Nubank
+      - tag: target
+        value: nubank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Microsoft 365
+      type: SIMPLE
+      key: icmppingsec[office.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft 365
+      - tag: target
+        value: office.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - OneDrive
+      type: SIMPLE
+      key: icmppingsec[onedrive.live.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: OneDrive
+      - tag: target
+        value: onedrive.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Outlook
+      type: SIMPLE
+      key: icmppingsec[outlook.live.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Outlook
+      - tag: target
+        value: outlook.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - PicPay
+      type: SIMPLE
+      key: icmppingsec[picpay.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: PicPay
+      - tag: target
+        value: picpay.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - PlayStation
+      type: SIMPLE
+      key: icmppingsec[playstation.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: PlayStation
+      - tag: target
+        value: playstation.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Prime Video
+      type: SIMPLE
+      key: icmppingsec[primevideo.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Prime Video
+      - tag: target
+        value: primevideo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Reddit
+      type: SIMPLE
+      key: icmppingsec[reddit.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Reddit
+      - tag: target
+        value: reddit.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Riot Games
+      type: SIMPLE
+      key: icmppingsec[riotgames.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Riot Games
+      - tag: target
+        value: riotgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Roblox
+      type: SIMPLE
+      key: icmppingsec[roblox.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Roblox
+      - tag: target
+        value: roblox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Santander
+      type: SIMPLE
+      key: icmppingsec[santander.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Santander
+      - tag: target
+        value: santander.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - SHEIN
+      type: SIMPLE
+      key: icmppingsec[shein.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: SHEIN
+      - tag: target
+        value: shein.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Shopee
+      type: SIMPLE
+      key: icmppingsec[shopee.com.br]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Shopee
+      - tag: target
+        value: shopee.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Spotify
+      type: SIMPLE
+      key: icmppingsec[spotify.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Spotify
+      - tag: target
+        value: spotify.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Steam
+      type: SIMPLE
+      key: icmppingsec[store.steampowered.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Steam
+      - tag: target
+        value: store.steampowered.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Teams
+      type: SIMPLE
+      key: icmppingsec[teams.microsoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Teams
+      - tag: target
+        value: teams.microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Telegram
+      type: SIMPLE
+      key: icmppingsec[telegram.org]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Telegram
+      - tag: target
+        value: telegram.org
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - TikTok
+      type: SIMPLE
+      key: icmppingsec[tiktok.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: TikTok
+      - tag: target
+        value: tiktok.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Twitch
+      type: SIMPLE
+      key: icmppingsec[twitch.tv]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Twitch
+      - tag: target
+        value: twitch.tv
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Ubisoft
+      type: SIMPLE
+      key: icmppingsec[ubisoft.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Ubisoft
+      - tag: target
+        value: ubisoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - WhatsApp
+      type: SIMPLE
+      key: icmppingsec[whatsapp.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: WhatsApp
+      - tag: target
+        value: whatsapp.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - X
+      type: SIMPLE
+      key: icmppingsec[x.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: X
+      - tag: target
+        value: x.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Xbox
+      type: SIMPLE
+      key: icmppingsec[xbox.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Xbox
+      - tag: target
+        value: xbox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - YouTube
+      type: SIMPLE
+      key: icmppingsec[youtube.com]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: YouTube
+      - tag: target
+        value: youtube.com
+      - tag: type
+        value: icmp
+    - name: ICMP Response Time - Zoom
+      type: SIMPLE
+      key: icmppingsec[zoom.us]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Zoom
+      - tag: target
+        value: zoom.us
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Cloudflare DNS
+      type: SIMPLE
+      key: icmpping[1.1.1.1]
+      history: 7d
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Cloudflare DNS
+      - tag: target
+        value: 1.1.1.1
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Google DNS
+      type: SIMPLE
+      key: icmpping[8.8.8.8]
+      history: 7d
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Google DNS
+      - tag: target
+        value: 8.8.8.8
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Quad9
+      type: SIMPLE
+      key: icmpping[9.9.9.9]
+      history: 7d
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: Quad9
+      - tag: target
+        value: 9.9.9.9
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - OpenDNS
+      type: SIMPLE
+      key: icmpping[208.67.222.222]
+      history: 7d
+      tags:
+      - tag: category
+        value: DNS_PUBLICO
+      - tag: service
+        value: OpenDNS
+      - tag: target
+        value: 208.67.222.222
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - AliExpress
+      type: SIMPLE
+      key: icmpping[aliexpress.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: AliExpress
+      - tag: target
+        value: aliexpress.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Amazon
+      type: SIMPLE
+      key: icmpping[amazon.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Amazon
+      - tag: target
+        value: amazon.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - AWS
+      type: SIMPLE
+      key: icmpping[aws.amazon.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: AWS
+      - tag: target
+        value: aws.amazon.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Bradesco
+      type: SIMPLE
+      key: icmpping[banco.bradesco]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Bradesco
+      - tag: target
+        value: banco.bradesco
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Battle.net
+      type: SIMPLE
+      key: icmpping[battle.net]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Battle.net
+      - tag: target
+        value: battle.net
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Banco do Brasil
+      type: SIMPLE
+      key: icmpping[bb.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Banco do Brasil
+      - tag: target
+        value: bb.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - C6 Bank
+      type: SIMPLE
+      key: icmpping[c6bank.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: C6 Bank
+      - tag: target
+        value: c6bank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Caixa
+      type: SIMPLE
+      key: icmpping[caixa.gov.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Caixa
+      - tag: target
+        value: caixa.gov.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Casas Bahia
+      type: SIMPLE
+      key: icmpping[casasbahia.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Casas Bahia
+      - tag: target
+        value: casasbahia.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Cloudflare
+      type: SIMPLE
+      key: icmpping[cloudflare.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Cloudflare
+      - tag: target
+        value: cloudflare.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Crunchyroll
+      type: SIMPLE
+      key: icmpping[crunchyroll.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Crunchyroll
+      - tag: target
+        value: crunchyroll.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Discord
+      type: SIMPLE
+      key: icmpping[discord.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Discord
+      - tag: target
+        value: discord.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Disney Plus
+      type: SIMPLE
+      key: icmpping[disneyplus.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Disney Plus
+      - tag: target
+        value: disneyplus.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - EA
+      type: SIMPLE
+      key: icmpping[ea.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: EA
+      - tag: target
+        value: ea.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Epic Games
+      type: SIMPLE
+      key: icmpping[epicgames.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Epic Games
+      - tag: target
+        value: epicgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Facebook
+      type: SIMPLE
+      key: icmpping[facebook.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Facebook
+      - tag: target
+        value: facebook.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - GitHub
+      type: SIMPLE
+      key: icmpping[github.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: GitHub
+      - tag: target
+        value: github.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Globoplay
+      type: SIMPLE
+      key: icmpping[globoplay.globo.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Globoplay
+      - tag: target
+        value: globoplay.globo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Google
+      type: SIMPLE
+      key: icmpping[google.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Google
+      - tag: target
+        value: google.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - iFood
+      type: SIMPLE
+      key: icmpping[ifood.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: iFood
+      - tag: target
+        value: ifood.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Instagram
+      type: SIMPLE
+      key: icmpping[instagram.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Instagram
+      - tag: target
+        value: instagram.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Inter
+      type: SIMPLE
+      key: icmpping[inter.co]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Inter
+      - tag: target
+        value: inter.co
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Itau
+      type: SIMPLE
+      key: icmpping[itau.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Itau
+      - tag: target
+        value: itau.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Magazine Luiza
+      type: SIMPLE
+      key: icmpping[magazineluiza.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Magazine Luiza
+      - tag: target
+        value: magazineluiza.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Max
+      type: SIMPLE
+      key: icmpping[max.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Max
+      - tag: target
+        value: max.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Mercado Livre
+      type: SIMPLE
+      key: icmpping[mercadolivre.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Mercado Livre
+      - tag: target
+        value: mercadolivre.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Mercado Pago
+      type: SIMPLE
+      key: icmpping[mercadopago.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Mercado Pago
+      - tag: target
+        value: mercadopago.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Microsoft
+      type: SIMPLE
+      key: icmpping[microsoft.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft
+      - tag: target
+        value: microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Apple Music
+      type: SIMPLE
+      key: icmpping[music.apple.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Apple Music
+      - tag: target
+        value: music.apple.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Netflix
+      type: SIMPLE
+      key: icmpping[netflix.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Netflix
+      - tag: target
+        value: netflix.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Nintendo
+      type: SIMPLE
+      key: icmpping[nintendo.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Nintendo
+      - tag: target
+        value: nintendo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Nubank
+      type: SIMPLE
+      key: icmpping[nubank.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Nubank
+      - tag: target
+        value: nubank.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Microsoft 365
+      type: SIMPLE
+      key: icmpping[office.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Microsoft 365
+      - tag: target
+        value: office.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - OneDrive
+      type: SIMPLE
+      key: icmpping[onedrive.live.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: OneDrive
+      - tag: target
+        value: onedrive.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Outlook
+      type: SIMPLE
+      key: icmpping[outlook.live.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Outlook
+      - tag: target
+        value: outlook.live.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - PicPay
+      type: SIMPLE
+      key: icmpping[picpay.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: PicPay
+      - tag: target
+        value: picpay.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - PlayStation
+      type: SIMPLE
+      key: icmpping[playstation.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: PlayStation
+      - tag: target
+        value: playstation.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Prime Video
+      type: SIMPLE
+      key: icmpping[primevideo.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Prime Video
+      - tag: target
+        value: primevideo.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Reddit
+      type: SIMPLE
+      key: icmpping[reddit.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Reddit
+      - tag: target
+        value: reddit.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Riot Games
+      type: SIMPLE
+      key: icmpping[riotgames.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Riot Games
+      - tag: target
+        value: riotgames.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Roblox
+      type: SIMPLE
+      key: icmpping[roblox.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Roblox
+      - tag: target
+        value: roblox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Santander
+      type: SIMPLE
+      key: icmpping[santander.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: service
+        value: Santander
+      - tag: target
+        value: santander.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - SHEIN
+      type: SIMPLE
+      key: icmpping[shein.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: SHEIN
+      - tag: target
+        value: shein.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Shopee
+      type: SIMPLE
+      key: icmpping[shopee.com.br]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: service
+        value: Shopee
+      - tag: target
+        value: shopee.com.br
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Spotify
+      type: SIMPLE
+      key: icmpping[spotify.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Spotify
+      - tag: target
+        value: spotify.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Steam
+      type: SIMPLE
+      key: icmpping[store.steampowered.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Steam
+      - tag: target
+        value: store.steampowered.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Teams
+      type: SIMPLE
+      key: icmpping[teams.microsoft.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Teams
+      - tag: target
+        value: teams.microsoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Telegram
+      type: SIMPLE
+      key: icmpping[telegram.org]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: Telegram
+      - tag: target
+        value: telegram.org
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - TikTok
+      type: SIMPLE
+      key: icmpping[tiktok.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: TikTok
+      - tag: target
+        value: tiktok.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Twitch
+      type: SIMPLE
+      key: icmpping[twitch.tv]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: Twitch
+      - tag: target
+        value: twitch.tv
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Ubisoft
+      type: SIMPLE
+      key: icmpping[ubisoft.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Ubisoft
+      - tag: target
+        value: ubisoft.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - WhatsApp
+      type: SIMPLE
+      key: icmpping[whatsapp.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: WhatsApp
+      - tag: target
+        value: whatsapp.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - X
+      type: SIMPLE
+      key: icmpping[x.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: service
+        value: X
+      - tag: target
+        value: x.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Xbox
+      type: SIMPLE
+      key: icmpping[xbox.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: service
+        value: Xbox
+      - tag: target
+        value: xbox.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - YouTube
+      type: SIMPLE
+      key: icmpping[youtube.com]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: service
+        value: YouTube
+      - tag: target
+        value: youtube.com
+      - tag: type
+        value: icmp
+    - name: ICMP Ping - Zoom
+      type: SIMPLE
+      key: icmpping[zoom.us]
+      history: 7d
+      tags:
+      - tag: category
+        value: CLOUD
+      - tag: service
+        value: Zoom
+      - tag: target
+        value: zoom.us
+      - tag: type
+        value: icmp
+    - name: TCP 443 Response Time - Amazon
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,amazon.com.br,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Amazon
+      - tag: target
+        value: amazon.com.br
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - Caixa
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,caixa.gov.br,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Caixa
+      - tag: target
+        value: caixa.gov.br
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - Epic Games
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,epicgames.com,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Epic Games
+      - tag: target
+        value: epicgames.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - Netflix
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,netflix.com,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Netflix
+      - tag: target
+        value: netflix.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - Nintendo
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,nintendo.com,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Nintendo
+      - tag: target
+        value: nintendo.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - PlayStation
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,playstation.com,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: PlayStation
+      - tag: target
+        value: playstation.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - SHEIN
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,shein.com,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: SHEIN
+      - tag: target
+        value: shein.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 Response Time - Telegram
+      type: SIMPLE
+      key: net.tcp.service.perf[tcp,telegram.org,443]
+      history: 7d
+      value_type: FLOAT
+      units: s
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Telegram
+      - tag: target
+        value: telegram.org
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Amazon
+      type: SIMPLE
+      key: net.tcp.service[tcp,amazon.com.br,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Amazon
+      - tag: target
+        value: amazon.com.br
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Caixa
+      type: SIMPLE
+      key: net.tcp.service[tcp,caixa.gov.br,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: FINANCEIRO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Caixa
+      - tag: target
+        value: caixa.gov.br
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Epic Games
+      type: SIMPLE
+      key: net.tcp.service[tcp,epicgames.com,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Epic Games
+      - tag: target
+        value: epicgames.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Netflix
+      type: SIMPLE
+      key: net.tcp.service[tcp,netflix.com,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: STREAMING
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Netflix
+      - tag: target
+        value: netflix.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Nintendo
+      type: SIMPLE
+      key: net.tcp.service[tcp,nintendo.com,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Nintendo
+      - tag: target
+        value: nintendo.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 - PlayStation
+      type: SIMPLE
+      key: net.tcp.service[tcp,playstation.com,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: JOGOS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: PlayStation
+      - tag: target
+        value: playstation.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 - SHEIN
+      type: SIMPLE
+      key: net.tcp.service[tcp,shein.com,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: VAREJO
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: SHEIN
+      - tag: target
+        value: shein.com
+      - tag: type
+        value: tcp
+    - name: TCP 443 - Telegram
+      type: SIMPLE
+      key: net.tcp.service[tcp,telegram.org,443]
+      history: 7d
+      tags:
+      - tag: category
+        value: REDES_SOCIAIS
+      - tag: fallback
+        value: icmp
+      - tag: method
+        value: tcp443
+      - tag: service
+        value: Telegram
+      - tag: target
+        value: telegram.org
+      - tag: type
+        value: tcp
+    inventory_mode: AUTOMATIC
